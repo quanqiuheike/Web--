@@ -1,0 +1,18 @@
+body {
+  background-color: #FF00FF;
+}
+div {
+  background-color: #FF00FF;
+}
+a {
+  background-color: #FF00FF;
+}
+a:hover {
+  background-color: #FF00FF;
+}
+.nav .logo {
+  color: #000;
+}
+.nav::before {
+  content: "";
+}

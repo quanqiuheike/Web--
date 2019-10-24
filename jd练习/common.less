@@ -1,0 +1,21 @@
+@color:#FF00FF;
+body {
+    background-color: @color;
+}
+div {
+    background-color: @color;
+}
+a {
+    background-color: @color;
+    &:hover{
+        background-color: @color;
+    }
+}
+.nav{
+    .logo{
+        color: #000;
+    }
+    &::before{
+        content: "";
+    }
+}
