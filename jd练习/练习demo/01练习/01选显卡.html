@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+  <style type="text/css">
+    .tab {
+      width: 500px;
+      margin: 110px auto;
+    }
+
+    .tab ul {
+      display: flex;
+      width: 500px;
+      padding: 0;
+      flex-direction: row;
+      margin: 0;
+
+    }
+
+    .tab ul li {
+      box-sizing: border-box;
+      padding: 0;
+      flex: 1;
+      height: 45px;
+      line-height: 45px;
+      list-style: none;
+      text-align: center;
+      border-top: 1px solid blue;
+      border-right: 1px solid blue;
+    }
+
+    .tab ul li:first-child {
+      border-left: 1px solid blue;
+    }
+
+    .tab ul li.active {
+      background-color: orange;
+    }
+
+    .tab div {
+      width: 500px;
+      height: 300px;
+      display: none;
+      line-height: 300px;
+      border: 1px solid blue;
+      border-top: 0px;
+    }
+
+    .tab div.current {
+      display: block;
+    }
+
+    .tab div img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="tab">
+      <ul>
+        <li v-on:click='change(index)' :class='currentIndex==index?"active":""' :key="item.id"
+          v-for="(item, index) in list" :key="id">{{item.title}}</li>
+      </ul>
+      <div :class='currentIndex==index?"current":" "' :key="item.id" v-for='(item,index) in list'>
+        <img :src="item.path" alt="">
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        currentIndex: 0,
+        list: [{
+          id: 1,
+          title: '1',
+          path: '../images/nature-1.jpg'
+        }, {
+          id: 2,
+          title: '2',
+          path: '../images/nature-2.jpg'
+        }, {
+          id: 3,
+          title: '3',
+          path: "../images/nature-3.jpg"
+        }]
+      },
+      methods: {
+        change: function (index) {
+          this.currentIndex = index;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

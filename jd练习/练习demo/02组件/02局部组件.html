@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=
+  , initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <test-com></test-com>
+    <hello-world></hello-world>
+    <hello-tom></hello-tom>
+    <hello-jerry></hello-jerry>
+    <div>{{root}}</div>
+    <second-com></second-com>
+    <second-com></second-com>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.component('test-com', {
+      template: `<div>Test<hellow-world></hellow-world></div>`
+    });
+
+    Vue.component('second-com', {
+      data: function () {
+        return {
+          second: '二级组件'
+        }
+      },
+      template: `<div class='second'>
+      <div>{{second}}</div>
+      <third-com><third-com>
+      <third-com><third-com>
+      <third-com><third-com>
+      </div>`
+    })
+    Vue.component('third-com', {
+      data: function () {
+        return {
+          third: '三级组件'
+        }
+      },
+      template: `<div class="third"><div>{{third}}</div></div>`
+    });
+    var HelloWorld = {
+      data: function () {
+        return {
+          msg: 'HelloWorld'
+        }
+      },
+      template: '<div>{{msg}}</div>',
+    };
+    var HelloTom = {
+      data: function () {
+        return {
+          msg: 'HelloTome'
+        }
+      },
+      template: '<div>{{msg}}</div>'
+    }
+    var HelloJerry = {
+      data: function () {
+        return {
+          msg: 'HelloJerry'
+        }
+      },
+      template: '<div>{{msg}}</div>'
+    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        root: '顶层组件'
+      },
+      components: {
+        'hello-world': HelloWorld,
+        'hello-tom': HelloTom,
+        // 'hello-jerry': HelloJerry
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

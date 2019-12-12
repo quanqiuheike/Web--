@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/jquery.js"></script>
+</head>
+
+<body>
+  <script>
+    fetch('url', {
+        method: 'get',
+      })
+      .then(function (data) {
+        return data.text();
+      }).then(function (data) {
+        return date.text()
+      })
+    fetch('url', {
+      method: 'delete'
+    }).then(function (data) {
+      return data.text()
+    }).then(function (data) {
+      return data.text();
+    })
+    fetch('url', {
+      method: 'post',
+      body: 'uname=lisi&pwd=123',
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded'
+      }
+    }).then(function (data) {
+      return data.text();
+    }).then(function (data) {
+      return data.text()
+    })
+    fetch('url', {
+      methods: 'post',
+      body: JSON.stringify({
+        uanem: '张三',
+        pwd: '456'
+      }),
+      header: {
+        'Content-type': 'application/json'
+      }
+    }).then(function (data) {
+      return data.text()
+    }).then(function (data) {
+      console.log.data()
+    })
+
+    fetch('url')
+      .then(function (data) {
+        return data.text()
+      }).then(function (data) {
+        var obj = JSON.parse(data)
+        console.log(obj.uname, obj.age, obj.gender)
+      });
+      
+
+
+
+
+
+    fetch('ds', {
+      method: 'put',
+      body: JSON.stringify({
+        uname: '张三',
+        pwd: '789'
+      }),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    }).then(function (data) {
+      return data.text()
+    }).then(function (data) {
+      console.log(data)
+    })
+    fetch('ds').then(function (data) {
+      return data.text();
+    }).then(function (data) {
+      return data.text();
+    })
+
+
+    function foo() {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          reject('error')
+        }, 100);
+      })
+    }
+    foo().then(function (data) {
+        console.log(data)
+      }, function (data) {
+        console.log(data)
+      })
+      .finally(function () {
+        console.log('finished')
+      });
+
+
+
+    function queryData(url) {
+      var p = new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState != 4)
+            return;
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            resolve(xhr.responseText);
+          } else {
+            reject('服务器错误');
+          }
+        }
+        xhr.open('get', url);
+        xhr.send(null);
+      });
+      return p;
+    }
+    queryData('http://localhost:3000/data')
+      .then(function (data) {
+        console.log(data)
+        return queryData('http://localhost:3000/data1');
+      })
+      .then(function (data) {
+        console.log(data)
+        return queryData('http://localhost:3000/data2');
+      }).then(function () {
+        console.log(data);
+        return queryData('http://localhost:3000/data2');
+      })
+
+    var p1 = queryData('1');
+    var p2 = queryData('2');
+    var p3 = queryData('3');
+    Promise.race([p1, p2, p3]).then(function (result) {
+      console.log(result)
+    })
+
+
+    var p = new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        var flag = false;
+        if (flag) {
+          resolve('hello');
+        } else {
+          reject('出错了')
+        }
+      }, 100);
+    });
+    p.then(function (data) {
+      cosole.log(data)
+    }, function (info) {
+      console.log(info)
+    })
+
+
+
+
+    $.ajax({
+      url: 'http://localhost:3000/data',
+      success: function (data) {
+        console.log(data)
+        $.ajax({
+          url: '',
+          success: function (data) {
+            $.ajax({
+              url: '',
+              success: function () {
+
+              }
+            })
+
+          }
+        });
+
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <div>{{pmsg}}</div>
+    <menu-item title="来自父组件的值"></menu-item>
+    <menu-item :title='ptitle' content='hello'></menu-item>
+    <nav-item menu-title="但是都是多"></nav-item>
+    <nav-item2 :pstr='pstr' :parr='parr' :pboo='true' :pobj="pobj"></nav-item2>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.component('menu-item', {
+      props: ['title', 'content'],
+      data: function () {
+        return {
+          msg: '子组件本身的数据'
+        }
+      },
+      template: `<div>{{msg+"----------"+title+"---------"+content}}</div>`
+    });
+    Vue.component('third-com', {
+      props: ['testTitle'],
+      template: '<div>{{testTitle}}</div>'
+    });
+    Vue.component('nav-item', {
+      props: ['menuTitle'],
+      template: `<div>{{menuTitle}}<third-com testTitle="hello"></third-com></div>`
+    });
+    Vue.component('nav-item2', {
+      props: ['pstr', 'pnum', 'pboo', 'parr', 'pobj'],
+      template: `
+          <div>
+          <div>{{pstr}}</div>
+          <div>{{12+pnum}}</div>
+          <div>{{typeof pboo}}</div>
+          <ul><li :key='index' v-for='(item,index) in parr'>{{item}}</li></ul>
+          <span>{{pobj.name}}</span>
+          <span>{{pobj.age}}</span>
+          </div>
+  `
+
+    });
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        pmsg: '父组件中内容',
+        ptitle: '动态绑定属性',
+        pstr: 'hello',
+        parr: ['apple', 'orange', 'banner'],
+        pobj: {
+          name: 'lisi',
+          age: '12'
+        }
+
+      }
+    });
+  </script>
+</body>
+
+</html>

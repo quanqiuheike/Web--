@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    axios.get('url')
+      .then(function (ret) {
+        console.log(ret.data)
+      })
+
+    axios.get('url')
+      .then(function (ret) {
+        console.log(ret.data)
+      })
+    axios.get('url', {
+      params: {
+        id: 999
+      }
+    }).then(function (ret) {
+      console.log(ret.data)
+    })
+    axios.delete('url', {
+      params: {
+        id: 111
+      }
+    }).then(function (ret) {
+      console.log(ret.data)
+    })
+    axios.post('url', {
+      uname: 'list',
+      pwd: 123
+    }).then(function (ret) {
+      console.log(ret.data)
+    });
+    var params = new URLSearchParams();
+    params.append('uanme', 'zhangsan')
+    params.append('pwd', 111)
+    axios.post('url', params)
+      .then(function (ret) {
+        consolo.log(ret.data)
+      })
+
+    axios.defaults.baseURL = 'url';
+    axios.default.headers['mytoken'] = 'hello'
+    axios.get('axios-json').then(function (ret) {
+      consolo.log(ret.data.name)
+    })
+
+    axios.interceptors.request.use(function (config) {
+      console.log(config.url)
+      config.header.mytoken = 'nihao'
+      return config;
+    }, function (err) {
+      console.log(err)
+    })
+    axios.interceptors.response.use(function (res) {
+      console.log(res)
+      var data = res.data;
+      return data;
+    }, function (err) {
+      console.log(err)
+    })
+    axios.get(url).then(function (data) {
+      console.log(data)
+    })
+  </script>
+
+</body>
+
+</html>

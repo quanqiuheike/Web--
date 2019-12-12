@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <style>
+    .tab ul {
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+
+
+    }
+
+    .tab ul li {
+      box-sizing: border-box;
+      padding: 0;
+      float: left;
+      width: 100px;
+      height: 45px;
+      list-style: none;
+      border-top: 1px solid blue;
+      text-align: center;
+      border-right: 1px solid blue;
+      cursor: pointer;
+      line-height: 45px;
+
+    }
+
+    .tab ul li:first-child {
+      border-left: 1px solid blue;
+    }
+
+    .tab ul li.active {
+      background-color: orange;
+    }
+
+    .tab div {
+      width: 400px;
+      height: 300px;
+      /* overflow: hidden; */
+      display: none;
+      line-height: 30px;
+      border-top: 0;
+      font-size: 30px;
+      border: 1px solid blue;
+      text-align: center;
+    }
+
+    .tab div img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .tab div.current {
+      display: block;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="app">
+    <div class="tab">
+      <ul>
+        <li v-on:click="change(index)" :class='currentIndex==index?"active":""' :key='item.id'
+          v-for='(item,index) in list'>{{item.title}}</li>
+      </ul>
+      <div :class='currentIndex==index?"current":""' :key='item.id' v-for='(item,index) in list'>
+        <img :src="item.path" alt="">
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        currentIndex: 0,
+        list: [{
+          id: 1,
+          title: 'apple',
+          path: 'images/nature-1.jpg'
+        }, {
+          id: 1,
+          title: 'apple',
+          path: 'images/nature-2.jpg'
+        }, {
+          id: 1,
+          title: 'apple',
+          path: 'images/nature-3.jpg'
+        }, {
+          id: 1,
+          title: 'apple',
+          path: 'images/nature-4.jpg'
+        }],
+      },
+      methods: {
+        change: function (index) {
+          this.currentIndex = index;
+
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>

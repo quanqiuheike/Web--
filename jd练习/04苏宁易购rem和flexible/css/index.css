@@ -1,0 +1,90 @@
+body {
+  min-width: 320px;
+  max-width: 750px;
+  margin: 0 auto;
+  width: 10rem;
+  background: #f2f2f2;
+  line-height: 1.5;
+}
+a {
+  text-decoration: none;
+  font-size: 0.333333rem;
+}
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 75px !important;
+  }
+}
+.search-content {
+  display: flex;
+  top: 0;
+  position: fixed;
+  width: 10rem;
+  height: 1.173333rem;
+  background: #ffc001;
+  align-items: center;
+}
+.search-content .classify {
+  width: 0.586667rem;
+  height: 0.933333rem;
+  background: url(../images/classify.png) no-repeat;
+  background-size: 0.586667rem 0.933333rem;
+}
+.search-content .search {
+  flex: 1;
+}
+.search-content .search input {
+  outline: none;
+  border-radius: 0.4rem;
+  background: #fff2cc;
+  font-size: 0.333333rem;
+  border: 0;
+  color: #757575;
+  padding-left: 0.733333rem;
+  height: 0.666667rem;
+  width: 100%;
+}
+.search-content .login {
+  color: #fff;
+  font-size: 0.333333rem;
+  width: 1rem;
+  height: 0.933333rem;
+  line-height: 0.933333rem;
+}
+.banner {
+  width: 10rem;
+}
+.banner img {
+  width: 100%;
+  height: 100%;
+}
+.ad {
+  display: flex;
+  width: 10rem;
+}
+.ad a {
+  flex: 1;
+}
+.ad a img {
+  width: 100%;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  width: 10rem;
+}
+nav a {
+  width: 20%;
+  height: 1.866667rem;
+  text-align: center;
+}
+nav a img {
+  display: block;
+  width: 1.093333rem;
+  height: 1.093333rem;
+  margin: 0.133333rem auto;
+}
+nav a .span {
+  color: #333;
+  font-size: 0.333333rem;
+}

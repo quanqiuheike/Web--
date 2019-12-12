@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+  <script src="../js/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <router-link to='/user/1'>User1</router-link>
+    <router-link to='/user/2'>User2</router-link>
+    <router-link :to="{name:'user',params:{id:3}}">User3</router-link>
+    <router-link to='/register'>Register</router-link>
+
+    <router-view></router-view>
+
+  </div>
+  <script>
+    const User = {
+      props: ['id', 'uname', 'age'],
+      template: `
+      <div>
+      <h1>
+      User组件—— id:{{id}},姓名：{{uname}},年龄{{age}}
+      </h1>
+      <button @click='goRegister'>
+      跳转到注册页面
+      </button>
+      </div>
+      `,
+      methods: {
+        goRegister() {
+          this.$router.push('/register');
+        }
+      },
+    }
+
+    const Register = {
+      template: `
+      
+      <div>
+      <h1>
+      Register组件
+      </h1>
+      <button @click='goBack'>后退</button>
+      </div>
+      `,
+      methods: {
+        goBack() {
+          this.$router.go(-1)
+        }
+      }
+    }
+    const router = new VueRouter({
+      routes: [{
+        path: '/',
+        redirect: '/user'
+      }, {
+        name: 'user',
+        path: '/user/:id',
+        component: User,
+        props: route => ({
+          uname: 'zs',
+          age: 20,
+          id: route.params.id
+        })
+
+      }, {
+        path: '/register',
+        component: Register
+      }]
+    });
+    var vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      router
+    });
+  </script>
+</body>
+
+</html>
